@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <ctype.h>
+
+main(){
+	srand(time(NULL));
+	
+	float valorT, valorA, valorG, valorP;
+	int cont, contG, contP, n1, n2, n3;
+	char op;
+	
+	cont=0;
+	contG=0;
+	contP=0;
+	valorG=0;
+	valorP=0;
+	
+	do{
+		printf("Informe o valor total:R$");
+		scanf("%f", &valorT);
+	}while(valorT <=0);
+	while(1){
+		system("cls");
+		cont++;
+	do{
+		printf("Informe o valor da aposta:");
+		scanf("%f", &valorA);
+		contG++;
+	}while(valorA<=0 || valorA > valorT);	
+		n1 = rand() % 4 + 1;
+		n2 = rand() % 4 + 1;
+		n3 = rand() % 4 + 1;
+		printf("\n=================\n");
+		printf("%d	%d	%d\n", n1, n2, n3);
+		printf("\nBANANA BANANA BANANA\n");
+		if(n1==n2 && n1==n3 && n2==n3){
+			printf("Você acertou tudo meus parabéns\n");
+			valorT=valorA*2+(valorT);
+			printf("Você dobrou sua grana! parabéns granudo:\n");
+			printf("Voce possui:R$ %.2f\n", valorT);
+			valorG++;
+		}else if(n1==n2 || n1==n3 || n2==n3){
+			printf("Você acertou 2 numeros\n");
+			printf("Você recuperou sua grana ,mas nao ganhou grana:\n");
+			printf("Voce possui:R$ %.2f\n", valorT);
+		}if(n1!=n2 && n1!=n3 && n2!=n3){
+			printf("Você perdeu\n");
+			valorT=valorT-valorA;
+			printf("Voce possui:R$ %.2f\n", valorT);
+		}
+	do{
+		printf("Deseja jogar novamente(S/N)?");
+		fflush(stdin);
+		scanf("%c", &op);
+		op=toupper(op);
+		printf("Você jogou:%d veze(s)",contG);
+	}while(op != 'S' && op!='N');
+	
+	if(op=='N'){
+		break;
+	}
+	}
+	getch();
+}
